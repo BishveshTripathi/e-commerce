@@ -17,8 +17,8 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-slate-400">
-      <div className="border border-black w-80 mt-20 m-auto">
+    <div className="">
+      <div className=" w-80 mt-16 m-auto">
         <form
           className="p-8"
           onSubmit={(e) => {
@@ -31,7 +31,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="UserName"
-            className="border border-black p-2 m-2 w-60 outline-none"
+            className="bg-slate-300 rounded p-2 m-2 w-64 outline-none"
           ></input>
           {signIn ? (
             ""
@@ -40,7 +40,7 @@ const Login = () => {
               ref={email}
               type="email"
               placeholder="Valid Email"
-              className="border border-black p-2 m-2 w-60 outline-none"
+              className="bg-slate-300 rounded p-2 m-2 w-64 outline-none"
             ></input>
           )}
           {signIn ? (
@@ -49,7 +49,7 @@ const Login = () => {
             <input
               type="number"
               placeholder="Mobile Number"
-              className="border border-black p-2 m-2 w-60 outline-none"
+              className=" bg-slate-300 rounded p-2 m-2 w-64 outline-none"
             ></input>
           )}
 
@@ -57,10 +57,10 @@ const Login = () => {
             ref={password}
             type="Password"
             placeholder="Password"
-            className="border border-black p-2 m-2 w-60 outline-none"
+            className="bg-slate-300 rounded p-2 m-2 w-64 outline-none"
           ></input>
           <button
-            className="bg-black text-slate-200 p-2 m-2 mb-2 rounded w-60"
+            className="bg-red-600 text-slate-200 p-2 m-2 mb-2 rounded w-64"
             onClick={handleClickButton}
           >
             {signIn ? "Sign In" : "Sign Up"}
