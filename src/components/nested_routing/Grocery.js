@@ -1,21 +1,10 @@
-import React, { useState } from "react";
-import { faker } from "@faker-js/faker";
+import React from "react";
+import { useContext } from "react";
+import { Cart } from "../../Context";
 
-faker.seed(50);
-
-const Grocery = () => {
-  const productsArray = [...Array(8)].map(() => ({
-    id: faker.string.uuid(),
-    name: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    image: faker.image.urlLoremFlickr({ category: "food" }),
-  }));
-
-  const [cart, setCart] = useState([]);
-
-  const [productList] = useState(productsArray);
-  console.log(cart);
-
+const Grocery = ({ productList }) => {
+  const { cart, setCart } = useContext(Cart);
+  console.log(useContext(Cart));
   return (
     <div className="flex flex-wrap gap-10 mt-10 ml-12">
       {productList.map((product) => (
@@ -31,9 +20,9 @@ const Grocery = () => {
           <div className="flex justify-between ">
             <div className="mt-5">
               <h3 className="text-lg">{product.name}</h3>
-              <p>Type: {product.Type}</p>
+              <p>Type: {product.name}</p> {/* Access the correct property */}
             </div>
-            {cart.includes(product) ? (
+            {cart.some((item) => item.id === product.id) ? (
               <button
                 className="bg-sky-600 h-8 mt-6 mr-4 rounded p-1 text-white text-lg"
                 onClick={() => {
@@ -60,23 +49,3 @@ const Grocery = () => {
 };
 
 export default Grocery;
-
-// {cart.includes(productList) ? (
-//   <button
-//     className="bg-sky-600  h-8 mt-6 mr-4 rounded p-1 text-white text-lg"
-//     onClick={() => {
-//       setCart(cart.filter((c) => c.id !== productList.id));
-//     }}
-//   >
-//     Remove Cart
-//   </button>
-// ) : (
-//   <button
-//     className="bg-sky-600  h-8 mt-6 mr-4 rounded p-1 text-white text-lg"
-//     onClick={() => {
-//       setCart([...cart, productList]);
-//     }}
-//   >
-//     Add Cart
-//   </button>
-// )}
