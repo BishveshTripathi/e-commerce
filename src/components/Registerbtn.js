@@ -3,21 +3,31 @@ import Validate from "../utils/validate";
 
 const Login = () => {
   const [signIn, setSignIn] = useState(true);
-  const email = useRef(null);
-  const password = useRef(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const usernameRef = useRef(null);
 
   const handleClickButton = () => {
-    //get email and password from the input fields by useRef hook
-    const message = Validate(email.current.value, password.current.value);
-    console.log(message);
-  };
+    const username = usernameRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
 
+    // Perform validation
+    const errorMessage = Validate(username, email, password);
+
+    if (errorMessage) {
+      setErrorMessage(errorMessage);
+    } else {
+      console.log("Successful login or signup");
+    }
+  };
   const handleSignin = () => {
     setSignIn(!signIn);
   };
 
   return (
-    <div className="flex mt-32 h-80 w-full">
+    <div className="flex mt-32 ">
       <div>
         <img
           src="https://static.vecteezy.com/system/resources/previews/022/984/730/non_2x/vegetable-transparent-free-png.png"
@@ -39,6 +49,7 @@ const Login = () => {
           }}
         >
           <input
+            ref={usernameRef}
             type="text"
             placeholder="UserName"
             className="bg-slate-200 rounded p-2 m-2 w-96 outline-none"
@@ -47,7 +58,7 @@ const Login = () => {
             ""
           ) : (
             <input
-              ref={email}
+              ref={emailRef}
               type="email"
               placeholder="Valid Email"
               className="bg-slate-200 rounded p-2 m-2 w-96 outline-none"
@@ -64,7 +75,7 @@ const Login = () => {
           )}
 
           <input
-            ref={password}
+            ref={passwordRef}
             type="Password"
             placeholder="Password"
             className="bg-slate-200 rounded p-2 m-2 w-96 outline-none"
@@ -75,6 +86,7 @@ const Login = () => {
           >
             {signIn ? "Sign In" : "Sign Up"}
           </button>
+          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           <p className="m-2 cursor-pointer text-lg" onClick={handleSignin}>
             {signIn ? "New user ? SignUp" : "Already member, SignIn"}
           </p>

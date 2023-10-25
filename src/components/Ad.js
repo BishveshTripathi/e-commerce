@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Ad = () => {
   return (
@@ -12,7 +13,9 @@ const Ad = () => {
           <h1 className="text-3xl">Only for Vegetables</h1>
         </section>
         <section>
-          <button className="bg-red-600 p-2 text-white">Shop Now</button>
+          <Link to="/grocery">
+            <button className="bg-red-600 p-2 text-white">Shop Now</button>
+          </Link>
         </section>
       </div>
       <div>

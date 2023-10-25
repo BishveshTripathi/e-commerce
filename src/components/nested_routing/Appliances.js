@@ -42,7 +42,7 @@ const Appliances = () => {
             </div>
             {cart.some((item) => item.id === product.id) ? (
               <button
-                className=" bg-sky-600 h-8 mt-6 mr-4 rounded p-1 text-white text-lg"
+                className=" bg-sky-600 h-10 w-24 mt-6 mr-4 rounded p-1 text-white text-xl"
                 onClick={() => {
                   setCart(cart.filter((c) => c.id !== product.id));
                 }}
